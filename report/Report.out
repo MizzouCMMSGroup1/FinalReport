@@ -1,0 +1,22 @@
+\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
+\BOOKMARK [1][-]{section.2}{Methods and Implementation}{}% 2
+\BOOKMARK [2][-]{subsection.2.1}{Template Based Protein Modeling}{section.2}% 3
+\BOOKMARK [3][-]{subsubsection.2.1.1}{Building a Decoy}{subsection.2.1}% 4
+\BOOKMARK [3][-]{subsubsection.2.1.2}{Optimization}{subsection.2.1}% 5
+\BOOKMARK [2][-]{subsection.2.2}{Template Free Modeling}{section.2}% 6
+\BOOKMARK [3][-]{subsubsection.2.2.1}{Fragment Database}{subsection.2.2}% 7
+\BOOKMARK [3][-]{subsubsection.2.2.2}{Simulated Annealing}{subsection.2.2}% 8
+\BOOKMARK [3][-]{subsubsection.2.2.3}{Neighbor Selection}{subsection.2.2}% 9
+\BOOKMARK [2][-]{subsection.2.3}{Protein Docking}{section.2}% 10
+\BOOKMARK [3][-]{subsubsection.2.3.1}{Protein Docking Tools}{subsection.2.3}% 11
+\BOOKMARK [2][-]{subsection.2.4}{Chromosome Modeling}{section.2}% 12
+\BOOKMARK [3][-]{subsubsection.2.4.1}{Objective function}{subsection.2.4}% 13
+\BOOKMARK [3][-]{subsubsection.2.4.2}{Simulated Annealing}{subsection.2.4}% 14
+\BOOKMARK [3][-]{subsubsection.2.4.3}{Markov-Chain Monte Carlo \(MCMC\)}{subsection.2.4}% 15
+\BOOKMARK [1][-]{section.3}{Results}{}% 16
+\BOOKMARK [2][-]{subsection.3.1}{Template Based Modeling}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.2}{Template Free Modeling}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.3}{Protein Docking}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.4}{Chromosome Modeling}{section.3}% 20
+\BOOKMARK [1][-]{section.4}{Conclusion}{}% 21
+\BOOKMARK [1][-]{section.5}{Citations}{}% 22
