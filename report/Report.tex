@@ -25,8 +25,7 @@
 \definecolor{mylilas}{RGB}{170,55,241}
 
 
-\title{Computational Modeling of Molecular Structures}
-%\subtitle{A snapshot of the current state-of-the-art in Bioinformatics}
+\title{Computational Modeling of Molecular Structures:\\A snapshot of the current state-of-the-art}
 \author{Caiwei Wang, Xiaokai Qian, Sean Lander, \\Haipei Fan, Puneet Gaddam, Brett Koonce\\\\University of Missouri - Columbia}
 
 \date{May 12, 2014}
@@ -45,8 +44,10 @@ With the advancement of technology, and a growing interest in computational meth
 
 \section{Introduction}
 
-Proteins, from the smallest amoeba to the largest living organisms, are the building blocks of all life on our planet.  With the advent of modern sequencing techniques, we possess a copy of these organism's (and our own) genetic code.  Deep within the ribosome, cells within continually build new proteins from DNA.  Given the same blueprint, though, we cannot accurately model what Mother Nature does so easily.\\\\
-Molecular structures obey the laws of nature.  In theory, we are masters of the atom: we have enough knowledge of physics, chemistry and math to be able to predict any interaction correctly.  But, in practice, biology remains frustratingly difficult to quantify.  With modern machines we can perform a billion simulations in the blink of an eye but still cannot accurately replicate what a single protein knows how to do with nothing more than its very own DNA sequence.\\\\
+Proteins, from the smallest amoeba to the largest living organisms, are the building blocks of all life on our planet.  With the advent of modern sequencing techniques, we possess a copy of these organism's (and our own) genetic code.  Deep within the ribosome, cells within continually build new proteins from DNA.  Given the same blueprint, though, we cannot accurately model what Mother Nature does so easily.\\
+
+Molecular structures obey the laws of nature.  In theory, we are masters of the atom: we have enough knowledge of physics, chemistry and math to be able to predict any interaction correctly.  But, in practice, biology remains frustratingly difficult to quantify.  With modern machines we can perform a billion simulations in the blink of an eye but still cannot accurately replicate what a single protein knows how to do with nothing more than its very own DNA sequence.\\
+
 Some of this is because our tools, be they computers or algorithms, are still relatively limited.  Computational modeling of molecular structures is a very, very new field.  Every field starts in this way, however, and thus it is important to take record of the technologies introduced and implemented from the beginning in order to lead the direction of the field. With this in mind we will present to the reader a snapshot of the curent state-of-the-art technologies in the field of Bioinformatics used in the modeling of DNA-based molecular structures, from proteins to the genome. We start with what is relatively the oldest modeling technique, Template Based Modeling for protein structures, and move forward in time to Template Free Modeling, onto Protein Docking prediction methods, and finally Chromosome conformation prediction, an area which is currently less than a decade old yet moving forward at a rapid pace.
 
 
@@ -55,15 +56,6 @@ Some of this is because our tools, be they computers or algorithms, are still re
 \subsection{Template Based Protein Modeling}
 
 Template Based Modeling centers around creating the structure of the target protein using the structure of a protein with a similar sequence as a template. Using a template structure and its alignment with the target we are able to confidently create a structure for the target which is close to native. After building a initial structure for the target, we can use existing tools to refine our model.
-
-%\begin{center}
-%	\subsubsection*{Template Based Modeling Pipeline}
-%		\begin{figure}[H]
-%		\includegraphics[width=\textwidth]{TBM-pipeline}
-%		\caption{An overview of the TBPy pipeline}
-%		\label{Fig:tbmpipeline}
-%		\end{figure}
-%\end{center}
 
 \subsubsection{Building a Decoy}
 
@@ -90,8 +82,10 @@ First, there are still gaps in our protein where the two structures did not matc
 
 \subsubsection*{Side-chain Modeling - SCXWRL4}
 
-Next, we run our candidate PDB file through SCWRL, a program for optimizing the side chains in our protein backbone. SCWRL4 is based on an improved graph theory algorithms that solve the combinatorial problem in side-chain prediction more rapidly than many other available programs.\\\\
-SCWRL4 is based on a new potential function that results in improved accuracy at reasonable speed.It will converge on very large proteins or protein complexes or those with very dense interaction graphs.It depends on a backbone-dependent rotamer library. The library provides lists of chi1-chi2-chi3-chi4 values and their relative probabilities for residues at given phi-psi values, and explores these conformations to minimize sidechain-backbone clashes and sidechain-sidechain clashes.\\\\
+Next, we run our candidate PDB file through SCWRL, a program for optimizing the side chains in our protein backbone. SCWRL4 is based on an improved graph theory algorithms that solve the combinatorial problem in side-chain prediction more rapidly than many other available programs.\\
+
+SCWRL4 is based on a new potential function that results in improved accuracy at reasonable speed.It will converge on very large proteins or protein complexes or those with very dense interaction graphs.It depends on a backbone-dependent rotamer library. The library provides lists of chi1-chi2-chi3-chi4 values and their relative probabilities for residues at given phi-psi values, and explores these conformations to minimize sidechain-backbone clashes and sidechain-sidechain clashes.\\
+
 The SCWRL4 executable saves the resolved optimal conformation of the whole protein model into PDB file. The corresponding value of the total energy is printed into the standard output, which can be redirected to a file for further analysis.
 
 
@@ -102,19 +96,12 @@ Finally, we used a two-step refinement protocol, called 3Drefine, to consistentl
 
 \subsection{Template Free Modeling}
 
-Template free modeling is an important technique in modern bioinformatics since many proteins do not have good templates to base a computational model on. First, we begin with PDB sequences converting into torsion angles using third party tools RAMA/LIPA (part of CRONKITE). Using a sliding window algorithm, we can add millions of fragments to our database. Then, for each segment, we can do a query for a match/similar protein in the database.\\\\
-We use the neighbor's energy as a score, and when the current solution’s neighbor is better it is accepted. If not, we select the neighbor with a probability based on the current temperature. For our project, we implemented a basic homology modeling pipeline in python, using a number of external tools like dFire, PyMOL and TM-score to build/present a final visualized model.
+Template free modeling is an important technique in modern bioinformatics since many proteins do not have good templates to base a computational model on. First, we begin with PDB sequences converting into torsion angles using third party tools RAMA/LIPA (part of CRONKITE). Using a sliding window algorithm, we can add millions of fragments to our database. Then, for each segment, we can do a query for a match/similar protein in the database.\\
 
-%\begin{center}
-%	\subsubsection*{Template Free Modeling Pipeline}
-%	\begin{figure}[H]
-%	\includegraphics[width=\textwidth]{TFM-pipeline}
-%	\caption{An overview of the TFPy pipeline}
-%	\label{Fig:tfmpipeline}
-%	\end{figure}
-%\end{center}
+We use the neighbor's energy as a score, and when the current solution’s neighbor is better it is accepted. If not, we select the neighbor with a probability based on the current temperature. For our project, we implemented a basic homology modeling pipeline in python, using a number of external tools like dFire, PyMOL and TM-score to build/present a final visualized model.\\
 
-In order to more easily assemble our workflow we break it into a simple pipeline. Doing this allows for quick iteration on multiple fronts without the fear of breaking the model as a whole.\\\\
+In order to more easily assemble our workflow we break it into a simple pipeline. Doing this allows for quick iteration on multiple fronts without the fear of breaking the model as a whole.\\
+
 Creating a system in this way leads to easy parallelization, as each decoy can be generated independent of the others. This allows for rapid decoy creation and comparison with no human component necessary beyond initial input.
 
 
@@ -125,7 +112,8 @@ First, we selected a set of 17,000 PDB database with sequence lengths of 100-150
 
 \subsubsection{Simulated Annealing}
 
-After building our fragments database, we build a initial model of our target using sequences from the database. Then, to improve our model, we use simulated annealing, a generic probabilistic metaheuristic for the global optimization problem of locating a good approximation to the global optimum of a given function in a large search space. It is often used when the search space is discrete and can prove quite efficient. Unlike hill climbing, simulated annealing can allow a poorer fragment replacement (a weaker score) early on when the function has a high temperature, which often leads to a better overall model structure.\\\\
+After building our fragments database, we build a initial model of our target using sequences from the database. Then, to improve our model, we use simulated annealing, a generic probabilistic metaheuristic for the global optimization problem of locating a good approximation to the global optimum of a given function in a large search space. It is often used when the search space is discrete and can prove quite efficient. Unlike hill climbing, simulated annealing can allow a poorer fragment replacement (a weaker score) early on when the function has a high temperature, which often leads to a better overall model structure.\\
+
 In each cycle, we build a random neighbor of the current best solution. If the neighbor’s score is better, we promote it to  the current solution. Otherwise, we select one of the two with a probability based on the current global temperature.  Allowing a “bad” fragment replacement can allow the SA algorithm to avoid local optima.
 
 
@@ -149,17 +137,9 @@ To provide an objective score of our new protein for the purposes of picking whi
 
 \subsection{Protein Docking}
 
-Protein-protein docking is used to predict the structure of a protein complex given a receptor and a ligand. It is very useful in drug creation and disease prevention. Because the computational power needed for predictions can be high, many unique algorithms and methods have been created to both predict and score docked structures.\\\\
-For this method comparison we will be using three prediction servers, each of which use a variation on the Fast Fourier Transform method for prediction and their own unique methods for rankings. We then standardize these predictions using RosettaDock's scoring function. Once the top 10 are selected we will apply Rosetta's optimization method, which allows for a relaxing of side-chain constraints, before scoring and sorting them a second time. We will then use RMSD, a traditional scoring method when native conformation is known, of the predicted interface in order to analyze and compare the different methods of prediction, optimization, and scoring.
+Protein-protein docking is used to predict the structure of a protein complex given a receptor and a ligand. It is very useful in drug creation and disease prevention. Because the computational power needed for predictions can be high, many unique algorithms and methods have been created to both predict and score docked structures.\\
 
-%\begin{center}
-%	\subsubsection*{Protein Docking Pipeline}
-%	\begin{figure}[H]
-%	\includegraphics[width=\textwidth]{PD-pipeline}
-%	\caption{An overview of the protein docking pipeline}
-%	\label{Fig:pdpipeline}
-%	\end{figure}
-%\end{center}
+For this method comparison we will be using three prediction servers, each of which use a variation on the Fast Fourier Transform method for prediction and their own unique methods for rankings. We then standardize these predictions using RosettaDock's scoring function. Once the top 10 are selected we will apply Rosetta's optimization method, which allows for a relaxing of side-chain constraints, before scoring and sorting them a second time. We will then use RMSD, a traditional scoring method when native conformation is known, of the predicted interface in order to analyze and compare the different methods of prediction, optimization, and scoring.
 
 \subsubsection{Protein Docking Tools}
 
@@ -170,7 +150,8 @@ Hex server is the first Fourier transform (FFT)-based protein docking server to 
 
 \subsubsection*{ClusPro}
 
-ClusPro is a web server which uses an automated rigid-body docking and discrimination algorithm that rapidly filters docked conformations, and ranks them based on their clustering properties.\\\\
+ClusPro is a web server which uses an automated rigid-body docking and discrimination algorithm that rapidly filters docked conformations, and ranks them based on their clustering properties.\\
+
 After signing up for an account and logging into the server, you can create a docking job with a receptor and ligand by uploading the PDB files of T50 and T53. You may optionally choose what chains to use in docking. After that, you can view the queue status for the decoys completed. It will generate the number of top models you choose.
 
 
@@ -182,15 +163,6 @@ ZDOCK uses a mixture of Fast Fourier Transform and data-driven scoring/ranking i
 \subsection{Chromosome Modeling}
 
 The human genome has been sequenced, but modelling the human chromosome remains a difficult task.  One promising avenue of modern research lies in the technique of Hi-C sequencing, which produces contact maps as part of the sequencing process.  By analyzing which regions of the genome are often found together, we can build up a map of the larger genome.  Trieu and Cheng recently proposed a new method based on an objective function that promises to be able to build a model using gradient descent from the Hi-C data.  We decided to put their results to the test, as well as experiment with solving the objective function using stochastic (MCMC and SA) methods.
-
-%\begin{center}
-%	\subsubsection*{Chromosome Modeling}
-%	\begin{figure}[H]
-%	\includegraphics[width=\textwidth]{CM-pipeline}
-%	\caption{An overview of the chromosome modeling}
-%	\label{Fig:cmpipeline}
-%	\end{figure}
-%\end{center}
 
 \subsubsection{Objective function}
 
@@ -254,32 +226,23 @@ For our first test of stochastic methods, we built a simulated annealer capable 
 
 \subsubsection{Markov-Chain Monte Carlo (MCMC)}
 
-For our second test of stochastic methods, we built a Markov-Chain Monte Carlo sampler.  Markov chains are an important technique in computer science from statistics.  First, we build up a graph model of discreet events with a corresponding transition matrix.  Next, we seed the transition matrix using real-world data (generally derived from posterior probability distributions).  Then, we can sample the Markov model repeatedly (Monte Carlo) to try and converge upon a solution space that is generally an excellent model of our problem domain.\\\\
+For our second test of stochastic methods, we built a Markov-Chain Monte Carlo sampler.  Markov chains are an important technique in computer science from statistics.  First, we build up a graph model of discreet events with a corresponding transition matrix.  Next, we seed the transition matrix using real-world data (generally derived from posterior probability distributions).  Then, we can sample the Markov model repeatedly (Monte Carlo) to try and converge upon a solution space that is generally an excellent model of our problem domain.\\
+
 For our project, we utilized MCMC to optimize our state/input vector (coordinate data) to most closely approximate our posteior distribution (our objective function).  Our methods converged well, but required some time to mix (~600k simulations).  We utilized a different neighborhood function than we used in Simulated Annealing.  First, we select a random region from which to generate a neighborhood. The neighborhood is then created by increasing/decreasing the location in each of the three dimensions: $(x, y, z)$. In this way we generate 8 neighbors and a default position which are scored and given a probability of selection based on the score range, with higher scoring conformations more likely to be sampled. Once a new neighbor conformation is selected the process repeats until all iterations have completed.
 
 
 \section{Results}
 
+\subsection{Scoring with TM-Score and RMSD}
+
+TM-score is an algorithm to calculate the structural similarity of two protein models. It is often used to quantitatively assess the accuracy of protein structure predictions relative to the experimental structure. Because TM-score weights the close atom pairs stronger than the distant matches, it is more sensitive to the topology fold than the often-used root-mean-square deviation (RMSD) since a local variation can result in a high RMSD value. TM-score has the value in (0,1). Based on statistics, a TM-score <0.17 corresponds to a random similarity and a TM-score >0.5 generally corresponds to the same fold in SCOP/CATH. The definition of TM-score is independent on the length of the proteins.\\
+
+RMSD is the measure of the average distance between the atoms (usually the backbone atoms) of superimposed proteins. In the study of globular protein conformations, one customarily measures the similarity in three-dimensional structure by the RMSD of the C atomic coordinates after optimal rigid body superposition.
+
+
 \subsection{Template Based Modeling}
 
-After we obtain our final target PDB file, we use Jmol to visualize it. At the same time, we also visualize the native one to compare it with our prediction. The left one is a target structure we generated (T0644), while right one is the native structure.\\\\
-
-
-%\begin{center}
-%	\subsubsection*{Native and Decoy}
-%	\begin{minipage}{.5\textwidth}
-%	  \centering
-%	  \includegraphics[width=.9\linewidth]{TBM-target_group_v2}
-%	  \captionof{figure}{Target structure}
-%	  \label{fig:tbm-decoy}
-%	\end{minipage}%
-%	\begin{minipage}{.5\textwidth}
-%	  \centering
-%	  \includegraphics[width=.9\linewidth]{TBM-target_native}
-%	  \captionof{figure}{Native structure}
-%	  \label{fig:tbm-native}
-%	\end{minipage}
-%\end{center}
+After we obtain our final target PDB file, we use Jmol to visualize it. At the same time, we also visualize the native one to compare it with our prediction. The left one is a target structure we generated (T0644), while right one is the native structure.\\
 
 After we generate the target PDB file, we use TM-Score and RMSD to evaluate our prediction. Also, we compared our prediction with other servers' results based on same target. For our project, we choose MuFold and MULTICOM to provide a benchmark.
 

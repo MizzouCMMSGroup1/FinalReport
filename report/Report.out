@@ -14,9 +14,10 @@
 \BOOKMARK [3][-]{subsubsection.2.4.2}{Simulated Annealing}{subsection.2.4}% 14
 \BOOKMARK [3][-]{subsubsection.2.4.3}{Markov-Chain Monte Carlo \(MCMC\)}{subsection.2.4}% 15
 \BOOKMARK [1][-]{section.3}{Results}{}% 16
-\BOOKMARK [2][-]{subsection.3.1}{Template Based Modeling}{section.3}% 17
-\BOOKMARK [2][-]{subsection.3.2}{Template Free Modeling}{section.3}% 18
-\BOOKMARK [2][-]{subsection.3.3}{Protein Docking}{section.3}% 19
-\BOOKMARK [2][-]{subsection.3.4}{Chromosome Modeling}{section.3}% 20
-\BOOKMARK [1][-]{section.4}{Conclusion}{}% 21
-\BOOKMARK [1][-]{section.5}{Citations}{}% 22
+\BOOKMARK [2][-]{subsection.3.1}{Scoring with TM-Score and RMSD}{section.3}% 17
+\BOOKMARK [2][-]{subsection.3.2}{Template Based Modeling}{section.3}% 18
+\BOOKMARK [2][-]{subsection.3.3}{Template Free Modeling}{section.3}% 19
+\BOOKMARK [2][-]{subsection.3.4}{Protein Docking}{section.3}% 20
+\BOOKMARK [2][-]{subsection.3.5}{Chromosome Modeling}{section.3}% 21
+\BOOKMARK [1][-]{section.4}{Conclusion}{}% 22
+\BOOKMARK [1][-]{section.5}{Citations}{}% 23
