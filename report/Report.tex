@@ -48,7 +48,7 @@ Proteins, from the smallest amoeba to the largest living organisms, are the buil
 
 Molecular structures obey the laws of nature.  In theory, we are masters of the atom: we have enough knowledge of physics, chemistry and math to be able to predict any interaction correctly.  But, in practice, biology remains frustratingly difficult to quantify.  With modern machines we can perform a billion simulations in the blink of an eye but still cannot accurately replicate what a single protein knows how to do with nothing more than its very own DNA sequence.\\
 
-Some of this is because our tools, be they computers or algorithms, are still relatively limited.  Computational modeling of molecular structures is a very, very new field.  Every field starts in this way, however, and thus it is important to take record of the technologies introduced and implemented from the beginning in order to lead the direction of the field. With this in mind we will present to the reader a snapshot of the curent state-of-the-art technologies in the field of Bioinformatics used in the modeling of DNA-based molecular structures, from proteins to the genome. We start with what is relatively the oldest modeling technique, Template Based Modeling for protein structures, and move forward in time to Template Free Modeling, onto Protein Docking prediction methods, and finally Chromosome conformation prediction, an area which is currently less than a decade old yet moving forward at a rapid pace.
+Some of this is because our tools, be they computers or algorithms, are still relatively limited.  Computational modeling of molecular structures is a very, very new field.  Every field starts in this way, however, and thus it is important to take record of the technologies introduced and implemented from the beginning in order to lead the direction of the field. With this in mind we will present to the reader a snapshot of the current state-of-the-art technologies in the field of Bioinformatics used in the modeling of DNA-based molecular structures, from proteins to the genome. We start with what is relatively the oldest modeling technique, Template Based Modeling for protein structures, and move forward in time to Template Free Modeling, onto Protein Docking prediction methods, and finally Chromosome conformation prediction, an area which is currently less than a decade old yet moving forward at a rapid pace.
 
 
 \section{Methods and Implementation}
@@ -91,7 +91,7 @@ The SCWRL4 executable saves the resolved optimal conformation of the whole prote
 
 \subsubsection*{Refinement - 3DRefine}
 
-Finally, we used a two-step refinement protocol, called 3Drefine, to consistently bring the initial model closer to the native structure. One of the major limitations of computational protein structure prediction is the deviation of predicted models from their experimentally derived true, native structures. The first step is based on optimization of hydrogen bonding (HB) network and the second step applies atomic-level energy minimization on the optimized model using a composite physics and knowledge-based force elds. The approach has been evaluated on the CASP benchmark data and it exhibits consistent improvement over the initial structure in both global and local structural quality measures. 3Drene method is also computationally inexpensive, consuming only few minutes of CPU time to refine a protein of typical length (300 residues).
+Finally, we used a two-step refinement protocol, called 3Drefine, to consistently bring the initial model closer to the native structure. One of the major limitations of computational protein structure prediction is the deviation of predicted models from their experimentally derived true, native structures. The first step is based on optimization of hydrogen bonding (HB) network and the second step applies atomic-level energy minimization on the optimized model using a composite physics and knowledge-based force fields. The approach has been evaluated on the CASP benchmark data and it exhibits consistent improvement over the initial structure in both global and local structural quality measures. 3Drene method is also computationally inexpensive, consuming only few minutes of CPU time to refine a protein of typical length (300 residues).
 
 
 \subsection{Template Free Modeling}
@@ -112,7 +112,7 @@ First, we selected a set of 17,000 PDB database with sequence lengths of 100-150
 
 \subsubsection{Simulated Annealing}
 
-After building our fragments database, we build a initial model of our target using sequences from the database. Then, to improve our model, we use simulated annealing, a generic probabilistic metaheuristic for the global optimization problem of locating a good approximation to the global optimum of a given function in a large search space. It is often used when the search space is discrete and can prove quite efficient. Unlike hill climbing, simulated annealing can allow a poorer fragment replacement (a weaker score) early on when the function has a high temperature, which often leads to a better overall model structure.\\
+After building our fragments database, we build a initial model of our target using sequences from the database. Then, to improve our model, we use simulated annealing, a generic probabilistic meta-heuristic for the global optimization problem of locating a good approximation to the global optimum of a given function in a large search space. It is often used when the search space is discrete and can prove quite efficient. Unlike hill climbing, simulated annealing can allow a poorer fragment replacement (a weaker score) early on when the function has a high temperature, which often leads to a better overall model structure.\\
 
 In each cycle, we build a random neighbor of the current best solution. If the neighbor’s score is better, we promote it to  the current solution. Otherwise, we select one of the two with a probability based on the current global temperature.  Allowing a “bad” fragment replacement can allow the SA algorithm to avoid local optima.
 
@@ -162,7 +162,7 @@ ZDOCK uses a mixture of Fast Fourier Transform and data-driven scoring/ranking i
 
 \subsection{Chromosome Modeling}
 
-The human genome has been sequenced, but modelling the human chromosome remains a difficult task.  One promising avenue of modern research lies in the technique of Hi-C sequencing, which produces contact maps as part of the sequencing process.  By analyzing which regions of the genome are often found together, we can build up a map of the larger genome.  Trieu and Cheng recently proposed a new method based on an objective function that promises to be able to build a model using gradient descent from the Hi-C data.  We decided to put their results to the test, as well as experiment with solving the objective function using stochastic (MCMC and SA) methods.
+The human genome has been sequenced, but modeling the human chromosome remains a difficult task.  One promising avenue of modern research lies in the technique of Hi-C sequencing, which produces contact maps as part of the sequencing process.  By analyzing which regions of the genome are often found together, we can build up a map of the larger genome.  Trieu and Cheng recently proposed a new method based on an objective function that promises to be able to build a model using gradient descent from the Hi-C data.  We decided to put their results to the test, as well as experiment with solving the objective function using stochastic (MCMC and SA) methods.
 
 \subsubsection{Objective function}
 
@@ -228,7 +228,7 @@ For our first test of stochastic methods, we built a simulated annealer capable 
 
 For our second test of stochastic methods, we built a Markov-Chain Monte Carlo sampler.  Markov chains are an important technique in computer science from statistics.  First, we build up a graph model of discreet events with a corresponding transition matrix.  Next, we seed the transition matrix using real-world data (generally derived from posterior probability distributions).  Then, we can sample the Markov model repeatedly (Monte Carlo) to try and converge upon a solution space that is generally an excellent model of our problem domain.\\
 
-For our project, we utilized MCMC to optimize our state/input vector (coordinate data) to most closely approximate our posteior distribution (our objective function).  Our methods converged well, but required some time to mix (~600k simulations).  We utilized a different neighborhood function than we used in Simulated Annealing.  First, we select a random region from which to generate a neighborhood. The neighborhood is then created by increasing/decreasing the location in each of the three dimensions: $(x, y, z)$. In this way we generate 8 neighbors and a default position which are scored and given a probability of selection based on the score range, with higher scoring conformations more likely to be sampled. Once a new neighbor conformation is selected the process repeats until all iterations have completed.
+For our project, we utilized MCMC to optimize our state/input vector (coordinate data) to most closely approximate our posterior distribution (our objective function).  Our methods converged well, but required some time to mix (~600k simulations).  We utilized a different neighborhood function than we used in Simulated Annealing.  First, we select a random region from which to generate a neighborhood. The neighborhood is then created by increasing/decreasing the location in each of the three dimensions: $(x, y, z)$. In this way we generate 8 neighbors and a default position which are scored and given a probability of selection based on the score range, with higher scoring conformations more likely to be sampled. Once a new neighbor conformation is selected the process repeats until all iterations have completed.
 
 
 \section{Results}
@@ -358,7 +358,7 @@ After that, we used Rosettadock to optimize our decoys from three servers. Since
 
 \subsubsection*{Interface Scores}
 
-Since overall rmsd can not reflect the quality of the complex very well, we tried to compare the interfaces of decoys with the one of native structure. The next two tables show results. From these two tables, they indicate that good overall RMSD can’t promise a good interface structure.
+Since overall RMSD can not reflect the quality of the complex very well, we tried to compare the interfaces of decoys with the one of native structure. The next two tables show results. From these two tables, they indicate that good overall RMSD can’t promise a good interface structure.
 
 \begin{center}
 \begin{tabular}{|l|c|c|c|r|}
@@ -399,8 +399,7 @@ Since overall rmsd can not reflect the quality of the complex very well, we trie
 
 \section{Conclusion}
 
-From the above tests it is apparent that, while some methods point in the right direction, work in this area is far from over and ripe for discovery. Standardization is necessary for cross-tool compatibility, first off, and much more data is needed in order to fully utilize the most successful data-driven approaches. For stochastic methods, more accurate scoring methods are needed, using knowledge from fields spanning statistical theory to physics and chemistry, and, most importantly, the microbiologists currently working in crystalography and high-accuracy imaging. This continues to be a young and developing field waiting for its equivalent of merge-sort, but thanks to the energy and excitement surrounding its potential that is likely to come sooner rather than later.
-
+From the above tests it is apparent that, while some methods point in the right direction, work in this area is far from over and ripe for discovery. Standardization is necessary for cross-tool compatibility, first off, and much more data is needed in order to fully utilize the most successful data-driven approaches. For stochastic methods, more accurate scoring methods are needed, using knowledge from fields spanning statistical theory to physics and chemistry, and, most importantly, the microbiologists currently working in crystallography and high-accuracy imaging. This continues to be a young and developing field waiting for its equivalent of merge-sort, but thanks to the energy and excitement surrounding its potential that is likely to come sooner rather than later.
 
 \section{Citations}
 
@@ -428,6 +427,8 @@ Proteins: Structure, Function and Bioinformatics. 2012 (In Press).
 
 \item N. Eswar, M. A. Marti-Renom, B. Webb, M. S. Madhusudhan, D. Eramian, M. Shen, U. Pieper, A. Sali. Comparative Protein Structure Modeling With MODELLER. Current Protocols in Bioinformatics, John Wiley \& Sons, Inc., Supplement 15, 5.6.1-5.6.30, 2006.
 
+\item J. Cheng, J. Li, Z. Wang, J. Eickholt, X. Deng. The MULTICOM Toolbox for Protein Structure Prediction. BMC Bioinformatics, 13:65, 2012.
+
 \item Y. Zhang, J. Skolnick, Scoring function for automated assessment of protein structure template quality, Proteins, 2004 57: 702-710
 
 \item J. Xu, Y. Zhang, How significant is a protein structure similarity with TM-score=0.5? Bioinformatics, 2010 26, 889-895
@@ -446,8 +447,16 @@ Proteins: Structure, Function and Bioinformatics. 2012 (In Press).
 
 \item Lyskov S, Chou FC, Conchúir SÓ, Der BS, Drew K, Kuroda D, Xu J, Weitzner BD, Renfrew PD, Sripakdeevong P, Borgo B, Havranek JJ, Kuhlman B, Kortemme T, Bonneau R, Gray JJ, Das R., "Serverification of Molecular Modeling Applications: The Rosetta Online Server That Includes Everyone (ROSIE)". PLoS One. 2013 May 22;8(5):e63906. doi: 10.1371/journal.pone.0063906. Print 2013.
 
+\item Eric Jones, Travis Oliphant, Pearu Peterson and others.  SciPy: Open Source Scientific Tools for Python.  http://www.scipy.org/
+
 \item Tuan Trieu and Jianlin Cheng.  Large-scale reconstruction of 3D structures of human chromosomes from chromosomal contact data.  Nucl. Acids Res. first published online January 24, 2014. doi:10.1093/nar/gkt1411
 
 \end{enumerate}
+
+\subsection{Source Code}
+
+All of our source code can be found online (under the GPL2 license): \\
+https://github.com/MizzouCMMSGroup1/
+
 
 \end{document}
